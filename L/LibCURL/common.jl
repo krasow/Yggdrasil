@@ -77,7 +77,7 @@ function build_libcurl(ARGS, name::String, version::VersionNumber)
         --without-brotli
 
         # A few things we actually enable
-        --with-libssh2=${prefix} --with-zlib=${prefix} --with-nghttp2=${prefix}
+	--with-libssh2=${prefix} --with-zlib=${prefix} --with-zstd=${prefix} --with-nghttp2=${prefix}
         --enable-versioned-symbols
     )
 
@@ -155,6 +155,7 @@ function build_libcurl(ARGS, name::String, version::VersionNumber)
     dependencies = [
         Dependency("LibSSH2_jll"),
         Dependency("Zlib_jll"),
+        Dependency("Zstd_jll"),
         Dependency("nghttp2_jll"),
         Dependency("OpenSSL_jll"; compat="3.0.16", platforms=filter(p->Sys.islinux(p) || Sys.isfreebsd(p), platforms)),
         BuildDependency(PackageSpec(name="LLVMCompilerRT_jll", uuid="4e17d02c-6bf5-513e-be62-445f41c75a11", version=llvm_version);
