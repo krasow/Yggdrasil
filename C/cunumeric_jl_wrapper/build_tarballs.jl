@@ -7,8 +7,9 @@ include(joinpath(YGGDRASIL_DIR, "platforms", "cuda.jl"))
 
 name = "cunumeric_jl_wrapper"
 version = v"25.5" # cunumeric has 05, but Julia doesn't like that
+# https://github.com/JuliaLegate/cunumeric_jl_wrapper/commit/8cd3b86823ee4783957d1c6656e40fda846e8211
 sources = [
-    GitSource("https://github.com/JuliaLegate/cunumeric_jl_wrapper.git","03a678b9631dde92ef0a81e834a97f48f725e103"),
+    GitSource("https://github.com/JuliaLegate/cunumeric_jl_wrapper.git","8cd3b86823ee4783957d1c6656e40fda846e8211"),
 ]
 
 MIN_JULIA_VERSION = v"1.10"
@@ -47,8 +48,6 @@ script = raw"""
     export CUDACXX=$CUDA_HOME/bin/nvcc
     export CUDA_LIB=${CUDA_HOME}/lib
 
-    ln -s ${CUDA_HOME}/lib ${CUDA_HOME}/lib64
-
     mkdir build
     cd build
 
@@ -80,9 +79,10 @@ end
 
 platforms = expand_cxxstring_abis(platforms) 
 platforms = filter!(p -> cxxstring_abi(p) == "cxx11", platforms)
+platforms = filter!(p -> arch(p) == "x86_64", platforms) # only do x86
 
 products = [
-    LibraryProduct("cunumeric_jl_wrapper", :cunumeric_jl_wrapper)
+    LibraryProduct("libcunumeric_jl_wrapper", :libcunumeric_jl_wrapper)
 ] 
 
 
