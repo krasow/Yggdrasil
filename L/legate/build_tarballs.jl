@@ -54,6 +54,7 @@ dependencies = [
     Dependency("HDF5_jll"; compat="~1.14.6"),
     Dependency("MPICH_jll"; compat="4.3.0"),
     Dependency("Zlib_jll"; compat="1.2.12"),
+    Dependency("UCX_jll"; compat="1.18.0"),
     Dependency(PackageSpec(name="CompilerSupportLibraries_jll", uuid="e66e0078-7015-5450-92f7-15fbd957f2ae")),
     HostBuildDependency(PackageSpec(; name = "CMake_jll", version = "3.31.9")),
 ]

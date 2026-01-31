@@ -62,6 +62,8 @@ function get_script(cuda::Val{true})
         --with-nccl-dir=${prefix} \
         --with-mpiexec-executable=${bindir}/mpiexec \
         --with-mpi-dir=${prefix} \
+        --with-ucx \
+        --with-ucx-dir=${prefix} \
         --with-hdf5-vfd-gds=0 \
         --with-hdf5-dir=${prefix} \
         --num-threads=${nproc} \
@@ -135,6 +137,8 @@ function get_script(cuda::Val{false})
         --with-cuda=0 \
         --with-mpiexec-executable=${bindir}/mpiexec \
         --with-mpi-dir=${prefix} \
+        --with-ucx \
+        --with-ucx-dir=${prefix} \
         --with-hdf5-vfd-gds=0 \
         --with-hdf5-dir=${prefix} \
         --num-threads=${nproc} \
